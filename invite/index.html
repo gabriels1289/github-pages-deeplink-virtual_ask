@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Open in Virtual Ask</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; padding: 2rem; line-height: 1.5; }
+      .card { max-width: 720px; margin: 0 auto; border: 1px solid #ddd; border-radius: 12px; padding: 1.5rem; }
+      .btn { display: inline-block; padding: .75rem 1rem; text-decoration: none; border: 1px solid #222; border-radius: 10px; }
+      code { background: #f6f6f6; padding: .25rem .4rem; border-radius: 6px; }
+    </style>
+    <script>
+      (function() {
+        var qs = window.location.search || '';
+        window.location = 'virtualask://invite' + qs;
+        setTimeout(function(){
+          var fb = document.getElementById('fallback');
+          if (fb) fb.style.display = 'block';
+        }, 1200);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Abriendo la app…</h1>
+      <p>Si no se abre automáticamente, usa las opciones de abajo.</p>
+      <div id="fallback" style="display:none">
+        <p>
+          <a class="btn" id="open" href="#">Abrir en la app</a>
+        </p>
+        <script>
+          (function(){
+            var qs = window.location.search || '';
+            var open = document.getElementById('open');
+            if (open) open.href = 'virtualask://invite' + qs;
+          })();
+        </script>
+        <p>Enlace de esta invitación:</p>
+        <code id="url"></code>
+        <script>
+          (function(){
+            var el = document.getElementById('url');
+            if (el) el.textContent = window.location.href;
+          })();
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
